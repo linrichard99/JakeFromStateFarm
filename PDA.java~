@@ -1,0 +1,11 @@
+import java.util.Date;
+
+public class PDA {
+    
+    private Date currentDate = new Date();
+    //    private String[] 
+
+    public static void main (String[] args) {
+	System.out.println(currentDate);
+    }
+}
