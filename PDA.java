@@ -3,15 +3,32 @@ import java.text.*;
 
 
 public class PDA {
-    
-
-    //    private String[] 
 
     public static void main (String[] args) {
-
-	Date currentDate = new Date();
-	SimpleDateFormat displayDate = new SimpleDateFormat("E yyyy-MM-dd");
-	System.out.println("Date: " + displayDate.format(currentDate));
+	PDA IEH = new PDA();
+	IEH.printMain();
 
     }
+
+    public String getDateSimple() {
+	Date currentDate = new Date(); //Instantiating the date
+	SimpleDateFormat displayDate = new SimpleDateFormat("E yyyy-MM-dd"); //Instantiating the SimpleDateFormat object
+	return "Date: " + displayDate.format(currentDate); //this line displays the date the way we want it to
+    }
+
+    public void printMain() {
+	Printer.println();
+	Printer.println();
+	Printer.println(getDateSimple());
+	Printer.println();
+	Printer.println("<Time>");
+	Printer.println();
+	Printer.println("<Calendar>");
+	Printer.println("<Scheduler>");
+	Printer.println("<Contacts>");
+	Printer.println("<Memo>");
+	Printer.println("<Calculator>");
+	Printer.println();
+    }
+
 }

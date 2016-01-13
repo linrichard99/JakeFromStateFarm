@@ -1,0 +1,19 @@
+public class Printer {
+    
+    public void print(String arg) {
+	System.out.print("|\t" + arg);
+    }
+
+    public void println(String arg) {
+	System.out.println("|\t" + arg);
+    }
+
+    public void print() {
+	System.out.print("|\t");
+    }
+
+    public void println() {
+	System.out.println("|\t");
+    }
+
+}
