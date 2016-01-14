@@ -13,3 +13,6 @@ V/R:
 Changed Printer.java into an interface to customize between different screens
 Implemented the interface for PDA.java
 	
+2016-01-13
+V/R:
+Worked on displaying main screen
