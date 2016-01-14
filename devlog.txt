@@ -3,3 +3,6 @@ V/R:
 Wrote readme and devlog
 Began writing PDA.java (the driver class)
 	
+2016-01-13
+V/R:
+Worked on displaying main screen
