@@ -1,0 +1,7 @@
+The date specified in the to-do list is the date the thing is due
+
+2016-01-15
+V:
+*Flowchart and UML
+R:
+*Prepare PDA.java for testing different apps based on flowchart

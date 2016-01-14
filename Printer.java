@@ -1,19 +1,9 @@
-public class Printer {
+public interface Printer {
     
-    public static void print(String arg) {
-	System.out.print("|\t" + arg);
-    }
+    public void print(String arg);
 
-    public static void println(String arg) {
-	System.out.println("|\t" + arg);
-    }
+    public void println(String arg);
 
-    public static void print() {
-	System.out.print("|\t");
-    }
-
-    public static void println() {
-	System.out.println("|\t");
-    }
+    public void println();
 
 }
