@@ -5,3 +5,23 @@ V:
 *Flowchart and UML
 R:
 *Prepare PDA.java for testing different apps based on flowchart
+
+2016-01-16
+*Begin work on App superclass
+*Begin work on Scheduler class
+
+2016-01-17
+*Finalize App superclass
+*Finalize Scheduler class
+*Make headway for Memo and Calendar class
+
+2016-01-18
+*Finalize Memo and Calendar classes
+
+2016-01-19
+*Begin calculator class
+*Begin additional features on aforementioned classes
+
+2016-01-20 through 2016-01-25
+*Additional time to serve as a buffer as well as bug testing
+
