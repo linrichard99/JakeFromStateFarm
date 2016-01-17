@@ -13,6 +13,11 @@ V/R:
 Changed Printer.java into an interface to customize between different screens
 Implemented the interface for PDA.java
 	
-2016-01-13
+2016-01-15
 V/R:
 Worked on displaying main screen
+
+2016-01-16
+V:
+PDA.java is in its final state
+Changed Printer.java from an interface to an abstract superclass due to convenience
