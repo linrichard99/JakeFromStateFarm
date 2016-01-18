@@ -1,0 +1,87 @@
+import java.util.*;
+import java.text.*;
+import java.io.*;
+
+public class CalendarPDA implements Printer {
+
+    public static void main(String[] arg) {
+	CalendarPDA test = new CalendarPDA();
+
+	test.print("01");
+	test.println();
+	test.println();
+	test.printLine();
+
+	System.out.println(test.startMonthHere(2016, 1, 18));
+	System.out.println(test.daysOfMonth("Jan", 2016));
+    }
+    
+    public void print(String arg) {
+	System.out.print("|" + arg);
+    }
+
+    public void println(String arg) {
+	System.out.println(arg);
+    }
+
+    public void println() {
+	System.out.println();
+    }
+
+    public void printLine() {
+	System.out.println("----------------------");
+    }
+
+    public int startMonthHere(int year, int month, int date) { //The date is a string because its fomatted
+	//To parse a specfic date, I had to google it.
+	//Help from: http://stackoverflow.com/questions/5270272/how-to-determine-day-of-week-by-passing-specific-date
+        Calendar cal = Calendar.getInstance();
+	cal.clear();
+	cal.set(year, month, date);
+	int weekVal = cal.get(Calendar.DAY_OF_WEEK);
+	
+	return weekVal;
+    }
+
+    public int daysOfMonth(String month, int year) { //Month is a string to faciliatate easier storage of long and short months.
+	String longDays = "Jan Mar May Jul Aug Oct Dec";
+	String shortDays = "Apr Jun Sep Nov";
+
+	if (month.indexOf(longDays) > -1) {
+	    return 31;
+	}
+
+	else if (month.indexOf(shortDays) > -1) {
+	    return 30;
+	}
+
+	else {
+
+	    //Thank you wikipedia for the rules of leap years
+	    if ((year % 4) != 0) {
+		return 28;
+	    }
+
+	    else if ((year % 100) != 0) {
+		return 29;
+	    }
+
+	    else if ((year % 400) != 0) {
+		return 28;
+	    }
+
+	    else {
+		return 29;
+	    }
+	}
+	
+    }
+
+    /*
+    public String displayCalendar(string month, String year){
+	println("|MO|TU|WE|TH|FR|SA|SU|");
+	for (int i = 
+    */	
+	
+
+}
