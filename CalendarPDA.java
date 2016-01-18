@@ -2,16 +2,29 @@ import java.util.*;
 import java.text.*;
 import java.io.*;
 
-public class CalendarPDA implements Printer {
+public class CalendarPDA implements Printer { //Called CalendarPDA because there already is a Calendar clas made in java.util. This is to avoid confusion since they do different things.
 
+    private InputStreamReader inVal;
+    private BufferedReader readVal;
+    private boolean goToMain;
+
+    public CalendarPDA() {
+	inVal = new InputStreamReader(System.in);
+	readVal = new BufferedReader(inVal);
+	goToMain = true;
+    }
+
+    //This is for testing. 
     public static void main(String[] arg) {
 	CalendarPDA test = new CalendarPDA();
 
+	//Test the print things
 	test.print("01");
 	test.println();
 	test.println();
 	test.printLine();
 
+	//Test the different helper methods and such
 	System.out.println(test.startMonthHere("2016-01-01"));
 	System.out.println(test.startMonthHere("2016-01-19"));
 	System.out.println(test.startMonthHere("2016-01-20"));
@@ -24,17 +37,23 @@ public class CalendarPDA implements Printer {
 	System.out.println(test.daysOfMonth("02", 2016));
 	System.out.println(test.daysOfMonth("04", 2026));
 
+	//Testing the calendar display
 	System.out.println();
 	test.displayCalendar("01", 2016);
 
 	
 	System.out.println();
 	test.displayCalendar("04", 2016);
+
+
+	//Testing run
+	test.run();
 	
     }
-    
+
+    //Implementing the Printer interface
     public void print(String arg) {
-	System.out.print("| " + arg);
+	System.out.print("|" + arg);
     }
 
     public void println(String arg) {
@@ -49,6 +68,7 @@ public class CalendarPDA implements Printer {
 	System.out.println("-----------------------------");
     }
 
+    //This is a helper function to startMonthHere. It tells you the weekday when provided a date.
     public String dayOfWeek(String inDate) { //The date is a string because its fomatted
 	//To parse a specfic date, I had to google it.
 	//Help from: http://stackoverflow.com/questions/5270272/how-to-determine-day-of-week-by-passing-specific-date
@@ -67,6 +87,7 @@ public class CalendarPDA implements Printer {
 	return dayOfWeek;
     }
 
+    //This is to tell the display method to see when to start the dates.
     public int startMonthHere(String inDate) {
 	String dayVal = dayOfWeek(inDate);
 
@@ -141,7 +162,7 @@ public class CalendarPDA implements Printer {
 
 	//This prints the empty spots before the firstDate starts
 	for (int j = 0; j < startMonthHere(firstDate); j++) {
-	    print("  ");
+	    print("   ");
 	    dateCtr++;
 	}
 
@@ -158,10 +179,10 @@ public class CalendarPDA implements Printer {
 
 	    //This is for spacing the numbers correctly
 	    if (i < 10) {
-		print("0" + i);
+		print(" 0" + i);
 	    }
 	    else {
-		print("" + i);
+		print(" " + i);
 	    }
 
 	    //Advance the dateCtr
@@ -170,28 +191,118 @@ public class CalendarPDA implements Printer {
 
 	//Printing the final empty slots
 	for (int j = dateCtr; j < 7; j++) {
-	    print("  ");
+	    print("   ");
 	}
 
 	//The last border value
 	System.out.println("|");
+
+	//Closing line
+	printLine();
 	
     }
 
     public void displayCalendar(String month, int year){//Month is string so fit the daysOfMonth method better
 
 	//This prints header
+	println();
 	printLine();
-	println("Month: " + month + "\tYear: " +  year);
+	println("Displaying: " + year + "-" + month);
 	printLine();
 	println("|SUN|MON|TUE|WED|THU|FRU|SAT|");
 	printLine();
 
 	//This prints body
 	printCalBody(month,year);
+
+	//This prints footer
+	Date today = new Date();
+	SimpleDateFormat display = new SimpleDateFormat("yyyy-MM-dd");
+	String displayToday = "Today: " + display.format(today);
+	System.out.println("     " + displayToday + "      ");
+	printLine();
 	
     }
-     
+
+    public void run() {
+
+        //Printing default current calendar
 	
+	//The instantiation of a new date creates the current date
+	Date today = new Date();
+	//This is to format the month and year
+	SimpleDateFormat month = new SimpleDateFormat("MM");
+	SimpleDateFormat year = new SimpleDateFormat("yyyy");
+	//This sets the values
+	String monthVal = month.format(today);
+	int yearVal = Integer.parseInt(year.format(today));
+	int monthValI = Integer.parseInt(month.format(today));
+
+	//Annnd it prints current calendar here
+	displayCalendar(monthVal, yearVal);
+
+	while (goToMain) {
+
+	    String input = "";
+
+	    try {
+		input = readVal.readLine();
+	    }
+
+	    catch ( IOException e) {}
+
+	    if (input.equals("Prev")) {
+		//This is to roll back a year
+		if (monthValI == 1) {
+		    monthValI = 12;
+		    monthVal = "12";
+		    yearVal--;	
+		}
+		//This is for all other cases
+		else {
+		    if (monthValI <= 10) {
+			monthValI--;
+			monthVal = "0" + monthValI;
+		    }
+		    else {
+			monthValI--;
+			monthVal = "" + monthValI;
+		    }
+		}
+
+		displayCalendar(monthVal, yearVal);
+	    }
+
+	    else if (input.equals("Next")) {
+		//This is to roll forward a year
+		if (monthValI == 12) {
+		    monthValI = 1;
+		    monthVal = "01";
+		    yearVal++;	
+		}
+		//This is for all other cases
+		else {
+		    if (monthValI < 9) {
+			monthValI++;
+			monthVal = "0" + monthValI;
+		    }
+		    else {
+			monthValI++;
+			monthVal = "" + monthValI;
+		    }
+		}
+		
+		displayCalendar(monthVal, yearVal);
+	    }
+
+	    else if (input.equals("Exit")) {
+		goToMain = false;
+	    }
+
+	    else {
+		System.out.println( "Invalid input, try again." );
+	    }
+	}
+    }	    		
 
 }
