@@ -124,7 +124,9 @@ public class PDA implements Printer{
 	    }
 	    
 	    else if (input.equals("Scheduler")) {
-		Scheduler.run();
+		Scheduler S = new Scheduler();
+		S.run();
+		printMain();
 	    }
 	    
 	    else {

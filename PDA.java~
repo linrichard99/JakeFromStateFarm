@@ -3,7 +3,7 @@ import java.text.*;
 import java.io.*;
 
 
-public class PDA extends Printer{
+public class PDA implements Printer{
 
     private InputStreamReader inVal;
     private BufferedReader readVal;
@@ -36,6 +36,29 @@ public class PDA extends Printer{
         SimpleDateFormat displayTime = new SimpleDateFormat("hh:mm:ss");
         return displayTime.format(currentDate);
     }
+
+    //interface implementations
+
+    //%-s makes the following string left justified                                                                                                                                                                                                                           
+    //The 15 means width of 15                                                                                                                                                                                                                                                
+    //The \t and \n are just tabs and new lines spectively  
+
+    public void print(String arg) {
+        System.out.printf("|\t %-35s|", arg);
+    }
+
+    public void println(String arg) {
+        System.out.printf("|\t %-35s|\n", arg);
+    }
+
+    public void println() {
+        System.out.printf("|\t %-35s|\n", "");
+    }
+
+    public void printLine() {
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    }
+
 
     //two different screens can be displayed
 

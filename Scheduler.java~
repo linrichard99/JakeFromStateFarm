@@ -8,20 +8,12 @@ public class Scheduler {
     private BufferedReader readVal;
     private boolean goToMain;
 
-    public Scheduler(){
-        inVal = new InputStreamReader(System.in);
-        readVal = new BufferedReader(inVal);
-        goToMain = true;
-    }
-
-
     public void run() {
+        printMain();
 	
         while (goToMain) {
-
-	    printMain();
 	    
-	    String input = "";
+            String input = "";
 	    String input1 = "";
 	    String input2 = "";
 	    String input3 = "";
@@ -68,14 +60,6 @@ public class Scheduler {
 		
 		System.out.println("Event created!");
 	    }
-	    
-	    else if (input.equals("Exit")) {
-		goToMain = false;
-	    }
-	    
-	    else {
-		System.out.println("Invalid");
-	    }
 	}
     }
     
@@ -96,35 +80,21 @@ public class Scheduler {
     }
 
     public void printMain() {
-
-	try (BufferedReader reader = new BufferedReader(new FileReader("events.csv"))) {
-		
-		ArrayList<String[]> events = new ArrayList<String[]>();
-		String line = "";
-		int counter = 0;
-		while (((line = reader.readLine()) != null) && (counter < 3)) {
-		    events.add(counter,line.split(","));
-		    counter++;
-		}
-		
-		//////////
-		
-		printLine();
-		println();
-		println("Upcoming Events");
-		println();
-		printLine();
-		for (int capacity = 0;capacity < 3;capacity++) {
-		    println();
-		    println( events.get(capacity)[0] + " : " + events.get(capacity)[1] );
-		    println();
-		    printLine();
-		}
-	    }
-	
-	catch (IOException e) {}
-	
+        printLine();
+        println();
+        println();
+        println();
+        println();
+        println();
+        println();
+        println();
+        println();
+        println();
+        println();
+        println();
+        println();
+        println();
+        printLine();
     }
-    
-    
+
 }
