@@ -21,3 +21,15 @@ Worked on displaying main screen
 V:
 PDA.java is in its final state
 Changed Printer.java from an interface to an abstract superclass due to convenience
+
+2016-01-17
+V/R:
+Break/Other HW day
+
+2016-01-18
+R:
+Created Calendar.java
+Wrote the calendar printing methods
+      Methods are able to take any month and year
+      You can scroll between different months based on input
+      
