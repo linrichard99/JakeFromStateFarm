@@ -2,18 +2,7 @@ import java.util.*;
 import java.text.*;
 import java.io.*;
 
-public class Scheduler {
-    
-    private InputStreamReader inVal;
-    private BufferedReader readVal;
-    private boolean goToMain;
-
-    public Scheduler(){
-        inVal = new InputStreamReader(System.in);
-        readVal = new BufferedReader(inVal);
-        goToMain = true;
-    }
-
+public class Scheduler extends Apps{
 
     public void run() {
 	
@@ -63,10 +52,6 @@ public class Scheduler {
     
     public void println() {
         System.out.printf("|\t %-35s|\n", "");
-    }
-    
-    public void printLine() {
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     }
 
     //display screen
@@ -154,7 +139,7 @@ public class Scheduler {
 		String line = "";
                 String[] print;
                 int counter = 1;
-                while ((line = reader.readLine()) != null) {
+                while ((line = reader.readLine()) != null) { //while loop is better because this boolean prevents String line to be null
                     if (counter == input) {
 			print = line.split(",");
 			System.out.println("Details of event " + input + ": " + print[2] );

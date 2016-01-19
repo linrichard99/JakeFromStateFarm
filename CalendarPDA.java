@@ -2,17 +2,7 @@ import java.util.*;
 import java.text.*;
 import java.io.*;
 
-public class CalendarPDA implements Printer { //Called CalendarPDA because there already is a Calendar clas made in java.util. This is to avoid confusion since they do different things.
-
-    private InputStreamReader inVal;
-    private BufferedReader readVal;
-    private boolean goToMain;
-
-    public CalendarPDA() {
-	inVal = new InputStreamReader(System.in);
-	readVal = new BufferedReader(inVal);
-	goToMain = true;
-    }
+public class CalendarPDA extends Apps { //Called CalendarPDA because there already is a Calendar clas made in java.util. This is to avoid confusion since they do different things.
 
     //This is for testing. 
     public static void main(String[] arg) {
@@ -39,11 +29,11 @@ public class CalendarPDA implements Printer { //Called CalendarPDA because there
 
 	//Testing the calendar display
 	System.out.println();
-	test.displayCalendar("01", 2016);
+	test.printMain("01", 2016);
 
 	
 	System.out.println();
-	test.displayCalendar("04", 2016);
+	test.printMain("04", 2016);
 
 
 	//Testing run
@@ -54,14 +44,6 @@ public class CalendarPDA implements Printer { //Called CalendarPDA because there
     //Implementing the Printer interface
     public void print(String arg) {
 	System.out.print("|" + arg);
-    }
-
-    public void println(String arg) {
-	System.out.println(arg);
-    }
-
-    public void println() {
-	System.out.println();
     }
 
     public void printLine() {
@@ -76,7 +58,7 @@ public class CalendarPDA implements Printer { //Called CalendarPDA because there
 	SimpleDateFormat toBeParsed = new SimpleDateFormat("yyyy-MM-dd");
 	Date parsedDate = new Date();
 	try {
-	    parsedDate = toBeParsed.parse(inDate);
+	    parsedDate = toBeParsed.parse(inDate); //Translates string format into an actual Date object
 	}
 	
 	catch (ParseException e) {}
@@ -202,7 +184,7 @@ public class CalendarPDA implements Printer { //Called CalendarPDA because there
 	
     }
 
-    public void displayCalendar(String month, int year){//Month is string so fit the daysOfMonth method better
+    public void printMain(String month, int year){//Month is string so fit the daysOfMonth method better
 
 	//This prints header
 	println();
@@ -239,7 +221,7 @@ public class CalendarPDA implements Printer { //Called CalendarPDA because there
 	int monthValI = Integer.parseInt(month.format(today));
 
 	//Annnd it prints current calendar here
-	displayCalendar(monthVal, yearVal);
+	printMain(monthVal, yearVal);
 
 	while (goToMain) {
 
@@ -270,7 +252,7 @@ public class CalendarPDA implements Printer { //Called CalendarPDA because there
 		    }
 		}
 
-		displayCalendar(monthVal, yearVal);
+		printMain(monthVal, yearVal);
 	    }
 
 	    else if (input.equals("Next")) {
@@ -292,7 +274,7 @@ public class CalendarPDA implements Printer { //Called CalendarPDA because there
 		    }
 		}
 		
-		displayCalendar(monthVal, yearVal);
+		printMain(monthVal, yearVal);
 	    }
 
 	    else if (input.equals("Exit")) {

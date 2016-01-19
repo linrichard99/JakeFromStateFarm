@@ -3,11 +3,7 @@ import java.text.*;
 import java.io.*;
 
 
-public class PDA implements Printer{
-
-    private InputStreamReader inVal;
-    private BufferedReader readVal;
-    private boolean goToMain; //flag that allows the PDA to constantly run
+public class PDA extends Apps{
 
     public static void main (String[] args) {
 
@@ -15,12 +11,6 @@ public class PDA implements Printer{
 	
 	IEH.run();
 	
-    }
-
-    public PDA(){
-	inVal = new InputStreamReader(System.in);
-	readVal = new BufferedReader(inVal);
-	goToMain = true;
     }
 
     //get date and time
@@ -53,10 +43,6 @@ public class PDA implements Printer{
 
     public void println() {
         System.out.printf("|\t %-35s|\n", "");
-    }
-
-    public void printLine() {
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     }
 
 
