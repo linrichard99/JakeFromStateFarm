@@ -20,65 +20,37 @@ public class Scheduler {
         while (goToMain) {
 
 	    printMain();
+	    System.out.println("Available commands: Create, Details, Exit");
 	    
 	    String input = "";
-	    String input1 = "";
-	    String input2 = "";
-	    String input3 = "";
-	    
+	    	    
             try {
                 input = readVal.readLine();
             }
 	    
             catch ( IOException e) {}
 
-	    if (input.equals("Create")) {
+	    if (input.equals("Create")) { //to create an event, a bunch of prompts will be asked
+		createEvent();
 		
-		System.out.println("What date is the event? (YYYY-MM-DD)");
-		
-		try {
-		    input1 = readVal.readLine();
-		}
-		
-		catch ( IOException e) {}
-		
-		System.out.println("Summary of the event:");
-
-                try {
-                    input2 = readVal.readLine();
-                }
-		
-                catch ( IOException e) {}
-
-		System.out.println("Details of the event:");
-
-                try {
-                    input3 = readVal.readLine();
-                }
-		
-                catch ( IOException e) {}
-
-		//Write to file
-		
-		try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("events.csv", true)))) {
-			out.println(input1 + "," + input2 + "," + input3);
-		    }
-		
-		catch (IOException e) {}
-		
-		System.out.println("Event created!");
 	    }
-	    
+
+	    else if (input.equals("Details")) {
+		details();
+	    }
+
 	    else if (input.equals("Exit")) {
 		goToMain = false;
 	    }
-	    
+
 	    else {
 		System.out.println("Invalid");
 	    }
 	}
     }
     
+    //interface implementations
+
     public void print(String arg) {
         System.out.printf("|\t %-35s|", arg);
     }
@@ -95,36 +67,100 @@ public class Scheduler {
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     }
 
+    //display screen
+
     public void printMain() {
+
+	printLine();
+	println();
+	println( "Upcoming Events" );
+	println();
+	printLine();
+
+	//read CSV file and display date and summary of event
 
 	try (BufferedReader reader = new BufferedReader(new FileReader("events.csv"))) {
 		
-		ArrayList<String[]> events = new ArrayList<String[]>();
 		String line = "";
-		int counter = 0;
-		while (((line = reader.readLine()) != null) && (counter < 3)) {
-		    events.add(counter,line.split(","));
+		String[] print;
+		int counter = 1;
+		while ((line = reader.readLine()) != null) { //read CSV file line by line
+		    print = line.split(",");
+		    println();
+		    println( counter + " : " + print[1] + " : " + print[0] );
+		    println();
+		    printLine();
 		    counter++;
 		}
 		
-		//////////
-		
-		printLine();
-		println();
-		println("Upcoming Events");
-		println();
-		printLine();
-		for (int capacity = 0;capacity < 3;capacity++) {
-		    println();
-		    println( events.get(capacity)[0] + " : " + events.get(capacity)[1] );
-		    println();
-		    printLine();
-		}
 	    }
 	
 	catch (IOException e) {}
 	
     }
+
+    public void createEvent() {
+
+	String input1 = "";
+	String input2 = "";
+	String input3 = "";
+
+	System.out.println("What date is the event? (YYYY-MM-DD)");
+
+	try {
+	    input1 = readVal.readLine();
+	}
+	catch ( IOException e) {}
+
+	System.out.println("Summary of the event: (15 chars max)");
+	
+	try {
+	    input2 = readVal.readLine();
+	}
+	catch ( IOException e) {}
+	
+	System.out.println("Details of the event: (Write as much as you want)");
+	
+	try {
+	    input3 = readVal.readLine();
+	}
+	catch ( IOException e) {}
+	
+	//Write to file                                                                                                                                                                                                                                               
+	
+	try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("events.csv", true)))) {
+		out.println(input1 + "," + input2 + "," + input3);
+	    }
+	catch (IOException e) {}
+	
+	System.out.println("Event created!");
+	
+    }
     
-    
+    public void details() {
+	int input = 0;
+	
+	System.out.println( "Specify the number of an event:" );
+	
+	try {
+	    input = Integer.parseInt( readVal.readLine() );
+	}
+	catch ( IOException e) {}
+
+	try (BufferedReader reader = new BufferedReader(new FileReader("events.csv"))) {
+		
+		String line = "";
+                String[] print;
+                int counter = 1;
+                while ((line = reader.readLine()) != null) {
+                    if (counter == input) {
+			print = line.split(",");
+			System.out.println("Details of event " + input + ": " + print[2] );
+		    }
+		    counter++;
+                }
+	    }
+	catch (IOException e) {}
+    }
+		
 }
