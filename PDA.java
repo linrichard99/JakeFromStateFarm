@@ -128,6 +128,12 @@ public class PDA implements Printer{
 		S.run();
 		printMain();
 	    }
+
+	    else if (input.equals("Calendar")) {
+		CalendarPDA C = new CalendarPDA();
+		C.run();
+		printMain();
+	    }
 	    
 	    else {
 		System.out.println( "Invalid input, try again." );

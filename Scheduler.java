@@ -17,9 +17,10 @@ public class Scheduler {
 
     public void run() {
 	
+	printMain();
+	
         while (goToMain) {
 
-	    printMain();
 	    System.out.println("Available commands: Create, Details, Exit");
 	    
 	    String input = "";
@@ -32,10 +33,11 @@ public class Scheduler {
 
 	    if (input.equals("Create")) { //to create an event, a bunch of prompts will be asked
 		createEvent();
-		
+		printMain(); //This goes after so you can see the new event
 	    }
 
 	    else if (input.equals("Details")) {
+		printMain(); //This goes before so that the details actually show up on the screen
 		details();
 	    }
 
