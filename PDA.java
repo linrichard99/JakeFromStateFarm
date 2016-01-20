@@ -120,7 +120,19 @@ public class PDA extends App{
 		C.run();
 		printMain();
 	    }
-	    
+
+	    else if (input.equals("Contacts")) {
+		Contacts O = new Contacts();
+		O.run();
+		printMain();
+	    }
+	    /*
+	    else if (input.equals("Memo")) {
+		Memos C = new Memos();
+		M.run();
+		printMain();
+	    }
+	    */
 	    else {
 		System.out.println( "Invalid input, try again." );
 	    }
