@@ -126,13 +126,13 @@ public class PDA extends App{
 		O.run();
 		printMain();
 	    }
-	    /*
+	   
 	    else if (input.equals("Memo")) {
-		Memos C = new Memos();
+		Memos M = new Memos();
 		M.run();
 		printMain();
 	    }
-	    */
+	   
 	    else {
 		System.out.println( "Invalid input, try again." );
 	    }

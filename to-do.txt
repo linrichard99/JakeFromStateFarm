@@ -22,6 +22,10 @@ R:
 *Begin calculator class
 *Begin additional features on aforementioned classes
 
-2016-01-20 through 2016-01-25
+2016-01-20 
+*Fix the truncation. Perhaps make it a separate method???
+*Have safety checks
+
+through 2016-01-25
 *Additional time to serve as a buffer as well as bug testing
 
