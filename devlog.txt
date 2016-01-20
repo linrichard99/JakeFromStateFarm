@@ -32,4 +32,16 @@ Created Calendar.java
 Wrote the calendar printing methods
       Methods are able to take any month and year
       You can scroll between different months based on input
+V:
+Created Scheduler.java
+Wrote the create and details methods for Scheduler.java
+
+2016-01-19
+R:
+Changed Printer.java (interface) to App.java (superclass)
+	Applies to all apps/anything that prints and utilizes io
+Created ListApp.java (interface)
+	Applies to Scheduler.java
+	Will be applied to Memo.java and Contacts.java
+
       
