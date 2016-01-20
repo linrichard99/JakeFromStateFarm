@@ -3,7 +3,7 @@ import java.text.*;
 import java.io.*;
 
 
-public class PDA extends Apps{
+public class PDA extends App{
 
     public static void main (String[] args) {
 

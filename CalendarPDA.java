@@ -2,7 +2,7 @@ import java.util.*;
 import java.text.*;
 import java.io.*;
 
-public class CalendarPDA extends Apps { //Called CalendarPDA because there already is a Calendar clas made in java.util. This is to avoid confusion since they do different things.
+public class CalendarPDA extends App { //Called CalendarPDA because there already is a Calendar clas made in java.util. This is to avoid confusion since they do different things.
 
     //This is for testing. 
     public static void main(String[] arg) {
@@ -225,6 +225,8 @@ public class CalendarPDA extends Apps { //Called CalendarPDA because there alrea
 
 	while (goToMain) {
 
+	    System.out.println("Available commands: Prev, Next, Exit");
+	    
 	    String input = "";
 
 	    try {

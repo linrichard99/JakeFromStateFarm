@@ -2,7 +2,7 @@ import java.util.*;
 import java.text.*;
 import java.io.*;
 
-public class Scheduler extends Apps{
+public class Scheduler extends App implements ListApp{
 
     public void run() {
 	
@@ -21,7 +21,7 @@ public class Scheduler extends Apps{
             catch ( IOException e) {}
 
 	    if (input.equals("Create")) { //to create an event, a bunch of prompts will be asked
-		createEvent();
+		create();
 		printMain(); //This goes after so you can see the new event
 	    }
 
@@ -86,7 +86,7 @@ public class Scheduler extends Apps{
 	
     }
 
-    public void createEvent() {
+    public void create() {
 
 	String input1 = "";
 	String input2 = "";
