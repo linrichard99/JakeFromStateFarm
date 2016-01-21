@@ -7,7 +7,7 @@ public abstract class App {
     protected InputStreamReader inVal; //input stream
     protected BufferedReader readVal; //buffered input stream
     protected boolean goToMain; //flag that allows the PDA to constantly run
-
+    
     public App(){
 	inVal = new InputStreamReader(System.in);
         readVal = new BufferedReader(inVal);
@@ -28,6 +28,10 @@ public abstract class App {
     
     public void printLine() {
 	System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    }
+
+    public void clear() {
+	System.out.println("\u001b[2J\u001b[H"); //Clears screen. Creds to Shantanu
     }
 
     public abstract void run();

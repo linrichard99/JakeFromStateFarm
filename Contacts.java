@@ -58,6 +58,8 @@ public class Contacts extends App implements ListApp{
 
     public void printMain() {
 
+	clear();
+	
 	printLine();
 	println();
 	println( "Contacts" );

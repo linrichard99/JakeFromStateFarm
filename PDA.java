@@ -49,7 +49,9 @@ public class PDA extends App{
     //two different screens can be displayed
 
     public void printMain() {
-	System.out.println("\033[");
+
+	clear();
+	
 	printLine();
 	println();
 	println();
@@ -68,6 +70,9 @@ public class PDA extends App{
     }
 
     public void printMainTime() {
+
+	clear();
+	
         printLine();
         println();
         println();

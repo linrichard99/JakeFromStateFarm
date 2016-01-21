@@ -58,6 +58,8 @@ public class Scheduler extends App implements ListApp{
 
     public void printMain() {
 
+	clear();
+
 	printLine();
 	println();
 	println( "Upcoming Events" );

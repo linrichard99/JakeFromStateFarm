@@ -58,6 +58,8 @@ public class Memos extends App implements ListApp{
 
     public void printMain() {
 
+	clear();
+	
 	printLine();
 	println();
 	println( "Notes" );

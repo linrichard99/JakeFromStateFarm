@@ -186,6 +186,8 @@ public class CalendarPDA extends App { //Called CalendarPDA because there alread
 
     public void printMain(String month, int year){//Month is string so fit the daysOfMonth method better
 
+	clear();
+	
 	//This prints header
 	println();
 	printLine();
