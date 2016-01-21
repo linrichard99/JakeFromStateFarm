@@ -25,6 +25,8 @@ R:
 2016-01-20 
 *Fix the truncation. Perhaps make it a separate method???
 *Have safety checks
+*Have user reprimanding if they put more than 15 char in specified areas
+*Start (finish?) delete and edit methods
 
 through 2016-01-25
 *Additional time to serve as a buffer as well as bug testing
