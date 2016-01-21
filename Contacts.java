@@ -73,8 +73,12 @@ public class Contacts extends App implements ListApp{
 		int counter = 1;
 		while ((line = reader.readLine()) != null) { //read CSV file line by line
 		    print = line.split(",");
+
+		    String fName = truncate(print[0], 11);
+		    String lName = truncate(print[1], 11);		    
+			
 		    println();
-		    println( counter + " : " + print[0] + " " + print[1]);
+		    println( counter + " : " + fName + " " + lName);
 		    println();
 		    printLine();
 		    counter++;

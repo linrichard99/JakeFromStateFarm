@@ -35,6 +35,15 @@ public abstract class App {
     public void printMain() { //This isn't abstract since some of the subclasses' printMain() overload it instead of overriding it. This means they would have to change the parameters, which causes a problem is it is abstract (since it doesn't allow for it).
 	System.out.println("Override/overload this method please!");
     }
-    
+
+    //This is used in displaying text that is perhaps too long
+    public String truncate(String arg, int finVal) {
+	if (arg.length() < finVal) {
+	    return arg;
+	}
+	else {
+	    return arg.substring(0,finVal-3) + "...";
+	}
+    }
     
 }

@@ -73,13 +73,11 @@ public class Memos extends App implements ListApp{
 		int counter = 1;
 		while ((line = reader.readLine()) != null) { //read CSV file line by line
 		    print = line.split(",");
+
+		    String name = truncate(print[0], 10);
+		    String details = truncate(print[1], 15);
 		    println();
-		    if (print[1].length() <= 15) {
-			println( counter + " : " + print[0] + " : " + print[1] );
-		    }
-		    else {
-			println( counter + " : " + print[0] + " : " + print[1].substring(16) );
-		    }
+		    println( counter + " : " + name + " : " + details );
 		    println();
 		    printLine();
 		    counter++;

@@ -73,8 +73,12 @@ public class Scheduler extends App implements ListApp{
 		int counter = 1;
 		while ((line = reader.readLine()) != null) { //read CSV file line by line
 		    print = line.split(",");
+		    
+		    String date = print[0];
+		    String summary = truncate(print[1], 16);
+		    
 		    println();
-		    println( counter + " : " + print[1] + " : " + print[0] );
+		    println( counter + " : " + summary + " : " + date );
 		    println();
 		    printLine();
 		    counter++;
