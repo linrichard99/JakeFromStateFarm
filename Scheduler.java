@@ -76,7 +76,7 @@ public class Scheduler extends App implements ListApp{
 	try (BufferedReader reader = new BufferedReader(new FileReader("events.csv"))) {
 		
 		String line = "";
-		String[] print;
+		String[] print; //Not an array list because split() requires an actual array.
 		int counter = 1;
 		while ((line = reader.readLine()) != null) { //read CSV file line by line
 		    print = line.split(",");
@@ -146,14 +146,14 @@ public class Scheduler extends App implements ListApp{
         }
         catch ( IOException e) {}
 
-	ArrayList<String> temp = new ArrayList<String>();
+	ArrayList<String> temp = new ArrayList<String>(); //this temp arraylist will hold everything in the old file (file to be replaced)
 
 	try (BufferedReader reader = new BufferedReader(new FileReader("events.csv"))) {
 		
 		String line = "";
 		int counter = 1;
 		while ((line = reader.readLine()) != null) {
-		    if ( counter != input ) {
+		    if ( counter != input ) { //Takes out part you're deleting
 			temp.add(line);
 		    }
 		    counter++;
@@ -164,7 +164,7 @@ public class Scheduler extends App implements ListApp{
 	try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("events.csv", false)))) {
 		
 		for (int index = 0;index < temp.size();index++) {
-		    out.println(temp.get(index));
+		    out.println(temp.get(index)); //transfer elements from temp to new file line by line
 		}
 	    }
 	catch ( IOException e) {}
