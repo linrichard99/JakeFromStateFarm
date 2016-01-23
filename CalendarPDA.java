@@ -52,16 +52,7 @@ public class CalendarPDA extends App { //Called CalendarPDA because there alread
 
     //This is a helper function to startMonthHere. It tells you the weekday when provided a date.
     public String dayOfWeek(String inDate) { //The date is a string because its fomatted
-	//To parse a specfic date, I had to google it.
-	//Help from: http://stackoverflow.com/questions/5270272/how-to-determine-day-of-week-by-passing-specific-date
-	
-	SimpleDateFormat toBeParsed = new SimpleDateFormat("yyyy-MM-dd");
-	Date parsedDate = new Date();
-	try {
-	    parsedDate = toBeParsed.parse(inDate); //Translates string format into an actual Date object
-	}
-	
-	catch (ParseException e) {}
+	Date parsedDate = stringToDate( inDate );
 	
 	SimpleDateFormat display = new SimpleDateFormat("EE");
 	String dayOfWeek = display.format(parsedDate);

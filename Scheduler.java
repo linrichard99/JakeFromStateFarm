@@ -71,6 +71,8 @@ public class Scheduler extends App implements ListApp{
 	println();
 	printLine();
 
+	order();
+
 	//read CSV file and display date and summary of event
 
 	try (BufferedReader reader = new BufferedReader(new FileReader("events.csv"))) {
@@ -96,6 +98,50 @@ public class Scheduler extends App implements ListApp{
 	catch (IOException e) {}
 	
     }
+
+    public void selectionSortV( ArrayList<String> data ) //helper for order()
+    {
+        for ( int index = 0 ; index < data.size() - 1 ; index++ ) {
+            String smallest = data.get(index);
+            int indexOfSmallest = index;
+            for ( int index2 = index + 1 ; index2 < data.size() ; index2++ ) { //search for smallest element
+		Date date1 = stringToDate(data.get(index2).substring(0,10));
+		if ( date1.compareTo(stringToDate(smallest.substring(0,10))) < 0 ) {
+		    smallest = data.get(index2);
+                    indexOfSmallest = index2;
+                }
+            }
+            String temp = data.get(index); //swaperoo                                                                                                                                                                                                                     
+            data.set(index,smallest);
+            data.set(indexOfSmallest,temp);
+        }
+    }//end selectionSort -- O(n^2) 
+
+    public void order() { //rearranges information in csv file according to date
+	
+        ArrayList<String> temp = new ArrayList<String>(); //this temp arraylist will hold everything in the old file (file to be replaced)                                                                                                                                    
+        try (BufferedReader reader = new BufferedReader(new FileReader("events.csv"))) {
+
+                String line = "";
+                int counter = 1;
+                while ((line = reader.readLine()) != null) {
+		    temp.add(line);
+		}
+		counter++;
+	    }
+        catch ( IOException e) {}
+
+	selectionSortV( temp );
+
+        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("events.csv", false)))) {
+		
+                for (int index = 0;index < temp.size();index++) {
+                    out.println(temp.get(index)); //transfer elements from temp to new file line by line                                                                                                                                                                      
+                }
+            }
+        catch ( IOException e) {}
+    }
+
 
     public void create() {
 

@@ -71,15 +71,17 @@ public class Scheduler extends App implements ListApp{
 	println();
 	printLine();
 
+	order();
+
 	//read CSV file and display date and summary of event
 
 	try (BufferedReader reader = new BufferedReader(new FileReader("events.csv"))) {
 		
 		String line = "";
-		String[] print;
+		String[] print; //Not an array list because split() requires an actual array.
 		int counter = 1;
 		while ((line = reader.readLine()) != null) { //read CSV file line by line
-		    print = line.split(",");
+		    print = line.split("#@!!");
 		    
 		    String date = print[0];
 		    String summary = truncate(print[1], 16);
@@ -97,37 +99,81 @@ public class Scheduler extends App implements ListApp{
 	
     }
 
+    public void selectionSortV( ArrayList<String> data ) //helper for order()
+    {
+        for ( int index = 0 ; index < data.size() - 1 ; index++ ) {
+            String smallest = data.get(index);
+            int indexOfSmallest = index;
+            for ( int index2 = index + 1 ; index2 < data.size() ; index2++ ) { //search for smallest element
+		Date date1 = stringToDate(data.get(index2).substring(0,10));
+		if ( date1.compareTo(stringToDate(smallest.substring(0,10))) < 0 ) {
+		    smallest = data.get(index2);
+                    indexOfSmallest = index2;
+                }
+            }
+            Comparable temp = data.get(index); //swaperoo                                                                                                                                                                                                                     
+            data.set(index,smallest);
+            data.set(indexOfSmallest,temp);
+        }
+    }//end selectionSort -- O(n^2) 
+
+    public void order() { //rearranges information in csv file according to date
+	
+        ArrayList<String> temp = new ArrayList<String>(); //this temp arraylist will hold everything in the old file (file to be replaced)                                                                                                                                    
+        try (BufferedReader reader = new BufferedReader(new FileReader("events.csv"))) {
+
+                String line = "";
+                int counter = 1;
+                while ((line = reader.readLine()) != null) {
+		    temp.add(line);
+		}
+		counter++;
+	    }
+        catch ( IOException e) {}
+
+	selectionSortV( temp );
+
+        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("events.csv", false)))) {
+		
+                for (int index = 0;index < temp.size();index++) {
+                    out.println(temp.get(index)); //transfer elements from temp to new file line by line                                                                                                                                                                      
+                }
+            }
+        catch ( IOException e) {}
+    }
+
+
     public void create() {
 
-	String input1 = "";
-	String input2 = "";
-	String input3 = "";
+	String date = "";
+	String summary = "";
+	String deetz = "";
 
 	System.out.println("What date is the event? (YYYY-MM-DD)");
 
 	try {
-	    input1 = readVal.readLine();
+	    date = readVal.readLine();
 	}
 	catch ( IOException e) {}
 
 	System.out.println("Summary of the event: (15 chars max)");
 	
 	try {
-	    input2 = readVal.readLine();
+	    summary = readVal.readLine();
 	}
 	catch ( IOException e) {}
 	
 	System.out.println("Details of the event: (Write as much as you want)");
 	
 	try {
-	    input3 = readVal.readLine();
+	    deetz = readVal.readLine();
 	}
 	catch ( IOException e) {}
 	
 	//Write to file                                                                                                                                                                                                                                               
 	
 	try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("events.csv", true)))) {
-		out.println(input1 + "," + input2 + "," + input3);
+		out.println(date + "#@!!" + summary + "#@!!" + deetz);
 	    }
 	catch (IOException e) {}
 	
@@ -146,27 +192,25 @@ public class Scheduler extends App implements ListApp{
         }
         catch ( IOException e) {}
 
-	ArrayList<String> temp = new ArrayList<String>();
+	ArrayList<String> temp = new ArrayList<String>(); //this temp arraylist will hold everything in the old file (file to be replaced)
 
 	try (BufferedReader reader = new BufferedReader(new FileReader("events.csv"))) {
 		
 		String line = "";
-		ArrayList<String> replace = new ArrayList<String>();
 		int counter = 1;
 		while ((line = reader.readLine()) != null) {
-		    if ( counter != input ) {
+		    if ( counter != input ) { //Takes out part you're deleting
 			temp.add(line);
 		    }
 		    counter++;
 		}
-		temp = replace;
 	    }
 	catch ( IOException e) {}
 	
 	try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("events.csv", false)))) {
 		
 		for (int index = 0;index < temp.size();index++) {
-		    out.println(temp.get(index));
+		    out.println(temp.get(index)); //transfer elements from temp to new file line by line
 		}
 	    }
 	catch ( IOException e) {}
@@ -191,7 +235,7 @@ public class Scheduler extends App implements ListApp{
                 int counter = 1;
                 while ((line = reader.readLine()) != null) { //while loop is better because this boolean prevents String line to be null
                     if (counter == input) {
-			print = line.split(",");
+			print = line.split("#@!!");
 			System.out.println("Details of event " + input + ": " + print[2] );
 		    }
 		    counter++;

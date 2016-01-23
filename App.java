@@ -62,5 +62,20 @@ public abstract class App {
 
     //Removing the quotes when printing the comma proofed things
     */
+
+    public Date stringToDate(String inDate) { //The date is a string because its fomatted                                                                                                                                                                                      
+        //To parse a specfic date, I had to google it.                                                                                                                                                                                                                        
+        //Help from: http://stackoverflow.com/questions/5270272/how-to-determine-day-of-week-by-passing-specific-date                                                                                                                                                         
+	
+        SimpleDateFormat toBeParsed = new SimpleDateFormat("yyyy-MM-dd");
+        Date parsedDate = new Date();
+        try {
+            parsedDate = toBeParsed.parse(inDate); //Translates string format into an actual Date object                                                                                                                                                                      
+        }
+	
+        catch (ParseException e) {}
+	
+        return parsedDate;
+    }
     
 }
