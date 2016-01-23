@@ -221,7 +221,7 @@ public class CalendarPDA extends App { //Called CalendarPDA because there alread
 		String line = "";
 		String[] values;
 		while ((line = reader.readLine()) != null) {
-		    values = line.split(",");
+		    values = line.split("#@!!");
 		    listDates.add( values[0] );
 		}
 	    }
