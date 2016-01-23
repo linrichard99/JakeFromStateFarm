@@ -79,7 +79,7 @@ public class Scheduler extends App implements ListApp{
 		String[] print; //Not an array list because split() requires an actual array.
 		int counter = 1;
 		while ((line = reader.readLine()) != null) { //read CSV file line by line
-		    print = line.split("^*%&");
+		    print = line.split("#@!!");
 		    
 		    String date = print[0];
 		    String summary = truncate(print[1], 16);
@@ -127,7 +127,7 @@ public class Scheduler extends App implements ListApp{
 	//Write to file                                                                                                                                                                                                                                               
 	
 	try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("events.csv", true)))) {
-		out.println(date + "^*%&" + summary + "^*%&" + deetz);
+		out.println(date + "#@!!" + summary + "#@!!" + deetz);
 	    }
 	catch (IOException e) {}
 	
@@ -189,7 +189,7 @@ public class Scheduler extends App implements ListApp{
                 int counter = 1;
                 while ((line = reader.readLine()) != null) { //while loop is better because this boolean prevents String line to be null
                     if (counter == input) {
-			print = line.split("^*%&");
+			print = line.split("#@!!");
 			System.out.println("Details of event " + input + ": " + print[2] );
 		    }
 		    counter++;
