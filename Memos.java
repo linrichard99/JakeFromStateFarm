@@ -10,7 +10,7 @@ public class Memos extends App implements ListApp{
 	
         while (goToMain) {
 
-	    System.out.println("Available commands: Create, Details, Exit");
+	    System.out.println("Available commands: Create, Delete, Details, Exit");
 	    
 	    String input = "";
 	    	    
@@ -23,6 +23,11 @@ public class Memos extends App implements ListApp{
 	    if (input.equals("Create")) { //to create an event, a bunch of prompts will be asked
 		create();
 		printMain(); //This goes after so you can see the new event
+	    }
+
+	    else if (input.equals("Delete")) {
+		delete();
+		printMain();
 	    }
 
 	    else if (input.equals("Details")) {
@@ -118,6 +123,41 @@ public class Memos extends App implements ListApp{
 	
 	System.out.println("Memo created!");
 	
+    }
+
+    public void delete() {
+
+        int input = 0;
+
+        System.out.println( "Specify the number of a memo:" );
+
+        try {
+            input = Integer.parseInt( readVal.readLine() );
+        }
+        catch ( IOException e) {}
+
+        ArrayList<String> temp = new ArrayList<String>();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader("memos.csv"))) {
+
+                String line = "";
+                int counter = 1;
+                while ((line = reader.readLine()) != null) {
+                    if ( counter != input ) {
+                        temp.add(line);
+                    }
+                    counter++;
+                }
+            }
+        catch ( IOException e) {}
+
+        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("memos.csv", false)))) {
+
+                for (int index = 0;index < temp.size();index++) {
+                    out.println(temp.get(index));
+                }
+            }
+        catch ( IOException e) {}
     }
     
     public void details() {

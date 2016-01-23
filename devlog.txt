@@ -44,4 +44,6 @@ Created ListApp.java (interface)
 	Applies to Scheduler.java
 	Will be applied to Memo.java and Contacts.java
 
-      
+2016-01-20
+V:
+Contacts,Memos,Scheduler can now delete stored information
