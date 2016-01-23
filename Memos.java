@@ -74,7 +74,7 @@ public class Memos extends App implements ListApp{
 		String[] print;
 		int counter = 1;
 		while ((line = reader.readLine()) != null) { //read CSV file line by line
-		    print = line.split(",");
+		    print = line.split("^*%&");
 
 		    String name = truncate(print[0], 10);
 		    String details = truncate(print[1], 15);
@@ -112,7 +112,7 @@ public class Memos extends App implements ListApp{
 	
 	//Write to file                                                                                                                                                                                                       
 	try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("memos.csv", true)))) {
-		out.println(memoName + "," + memoNotes);
+		out.println(memoName + "^*%&" + memoNotes);
 	    }
 	catch (IOException e) {}
 	
@@ -137,7 +137,7 @@ public class Memos extends App implements ListApp{
                 int counter = 1;
                 while ((line = reader.readLine()) != null) { //while loop is better because this boolean prevents String line to be null
                     if (counter == input) {
-			print = line.split(",");
+			print = line.split("^*%&");
 			System.out.println("Here's what you wrote: " + print[1] );
 		    }
 		    counter++;

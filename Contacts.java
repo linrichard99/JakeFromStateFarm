@@ -74,7 +74,7 @@ public class Contacts extends App implements ListApp{
 		String[] print;
 		int counter = 1;
 		while ((line = reader.readLine()) != null) { //read CSV file line by line
-		    print = line.split(",");
+		    print = line.split("^*%&");
 
 		    String fName = truncate(print[0], 11);
 		    String lName = truncate(print[1], 11);		    
@@ -131,7 +131,7 @@ public class Contacts extends App implements ListApp{
 	//Write to fil                 
 	
 	try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("contacts.csv", true)))) {
-		out.println(fName + "," + lName + "," + email + "," + phone);
+		out.println(fName + "^*%&" + lName + "^*%&" + email + "^*%&" + phone);
 	    }
 	catch (IOException e) {}
 	
@@ -156,7 +156,7 @@ public class Contacts extends App implements ListApp{
                 int counter = 1;
                 while ((line = reader.readLine()) != null) { //while loop is better because this boolean prevents String line to be null
                     if (counter == input) {
-			print = line.split(",");
+			print = line.split("^*%&");
 			System.out.println("Name: "+ print[0] + " " + print[1] );
 			System.out.println("Email: " + print[2]);
 			System.out.println("Phone Number: " + print[3]);

@@ -4,7 +4,7 @@ import java.io.*;
 
 public class CalendarPDA extends App { //Called CalendarPDA because there already is a Calendar clas made in java.util. This is to avoid confusion since they do different things.
 
-    //This is for testing. 
+    //This is for testing since I didn't have access to PDA.java because partner was using it on github (and merge errors are mucho scary)
     public static void main(String[] arg) {
 	CalendarPDA test = new CalendarPDA();
 

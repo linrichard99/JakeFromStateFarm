@@ -74,7 +74,7 @@ public class Scheduler extends App implements ListApp{
 		String[] print;
 		int counter = 1;
 		while ((line = reader.readLine()) != null) { //read CSV file line by line
-		    print = line.split(",");
+		    print = line.split("^*%&");
 		    
 		    String date = print[0];
 		    String summary = truncate(print[1], 16);
@@ -94,35 +94,35 @@ public class Scheduler extends App implements ListApp{
 
     public void create() {
 
-	String input1 = "";
-	String input2 = "";
-	String input3 = "";
+	String date = "";
+	String summary = "";
+	String deetz = "";
 
 	System.out.println("What date is the event? (YYYY-MM-DD)");
 
 	try {
-	    input1 = readVal.readLine();
+	    date = readVal.readLine();
 	}
 	catch ( IOException e) {}
 
 	System.out.println("Summary of the event: (15 chars max)");
 	
 	try {
-	    input2 = readVal.readLine();
+	    summary = readVal.readLine();
 	}
 	catch ( IOException e) {}
 	
 	System.out.println("Details of the event: (Write as much as you want)");
 	
 	try {
-	    input3 = readVal.readLine();
+	    deetz = readVal.readLine();
 	}
 	catch ( IOException e) {}
 	
 	//Write to file                                                                                                                                                                                                                                               
 	
 	try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("events.csv", true)))) {
-		out.println(input1 + "," + input2 + "," + input3);
+		out.println(date + "^*%&" + summary + "^*%&" + deetz);
 	    }
 	catch (IOException e) {}
 	
@@ -147,7 +147,7 @@ public class Scheduler extends App implements ListApp{
                 int counter = 1;
                 while ((line = reader.readLine()) != null) { //while loop is better because this boolean prevents String line to be null
                     if (counter == input) {
-			print = line.split(",");
+			print = line.split("^*%&");
 			System.out.println("Details of event " + input + ": " + print[2] );
 		    }
 		    counter++;

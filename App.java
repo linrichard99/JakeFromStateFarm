@@ -49,5 +49,18 @@ public abstract class App {
 	    return arg.substring(0,finVal-3) + "...";
 	}
     }
+
+    /* NO LONGER NEEDED BUT KEPT FOR REFERENCE
+    //This is used to safeguard csv files from comma tampering
+    public String commaProof(String in) {
+	String retVal = "";
+	retVal = in.replace("\"", "'"); //This is to change all double quotes to single quotes, which have the same functionality in grammar, but won't mess with our safeproofing
+	retVal = "\"" + retVal + "\""; //Safe proofing with double commas
+
+	return retVal;
+    }
+
+    //Removing the quotes when printing the comma proofed things
+    */
     
 }
