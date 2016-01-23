@@ -53,7 +53,12 @@ public class PDA extends App{
 	clear();
 	
 	printLine();
-	println();
+	if ( checkDate(getDateSimple().substring(10,20)) ) { //this can be hard-coded because length of getDateSimple() is definite and we're using a standarized date format
+	    println("YOU HAVE AN EVENT TODAY!");
+	}
+	else {
+	    println();
+	}
 	println();
 	println(getDateSimple());
 	println();
@@ -68,13 +73,18 @@ public class PDA extends App{
 	println();
 	printLine();
     }
-
+	
     public void printMainTime() {
-
+	
 	clear();
 	
         printLine();
-        println();
+        if ( checkDate(getDateSimple().substring(10,20)) ) { //this can be hard-coded because length of getDateSimple() is definite and we're using a standardized date format
+            println("YOU HAVE AN EVENT TODAY!");
+        }
+	else {
+            println();
+	}
         println();
         println(getDateSimple());
         println(getTime());

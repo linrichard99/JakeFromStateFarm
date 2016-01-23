@@ -211,33 +211,6 @@ public class CalendarPDA extends App { //Called CalendarPDA because there alread
 	
     }
 
-    public boolean checkDate(String inDate) {
-	
-	//The pull from events.csv part
-	ArrayList<String> listDates = new ArrayList<String>();
-	
-	try (BufferedReader reader = new BufferedReader(new FileReader("events.csv"))) {
-		
-		String line = "";
-		String[] values;
-		while ((line = reader.readLine()) != null) {
-		    values = line.split("#@!!");
-		    listDates.add( values[0] );
-		}
-	    }
-	catch (IOException e) {}
-
-	//The linear search part
-	for (int i = 0; i < listDates.size(); i++) {
-	    if (inDate.equals(listDates.get(i))) {
-		return true;
-	    }
-	}
-
-	return false;
-    }
-	    
-
     public void run() {
 
         //Printing default current calendar
