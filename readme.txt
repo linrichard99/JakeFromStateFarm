@@ -5,7 +5,7 @@ Description:
 The Individual Electronic Helper, or IEH, is a Personal Device Assistant, or PDA, which stores reminders, contacts and memos (or rcm...but who actually says that). It can also tell time and notify you when there is an event on that day.
 
 Getting Around:
-On the main screen, type the words seen in the <angle brackets> to get to your destination. Typing Time will provide the current time. 
+On the main screen, type the words seen in the <angle brackets> to get to your destination. Typing Time will provide the current time. We recommend full screen for best experience.
 
 In the apps, instructions are provided.
 
