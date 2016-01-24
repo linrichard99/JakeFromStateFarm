@@ -7,6 +7,7 @@ public class Contacts extends App implements ListApp{
     private boolean mischief = false; //This is for when users try to input things that aren't allowed. In these cases, we have to print an error message. Sometimes, due to the fact that our code clears the screen each time the main screen is shown, that error message isn't seen. This way, we can still reprimand the user for trying to mess with the code.
 
     private final String VALIDPHONE = "0123456789#";
+    private final String ALPHABET = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz";
     
     public void run() {
 	
@@ -78,7 +79,9 @@ public class Contacts extends App implements ListApp{
 	println();
 	printLine();
 
-	//read CSV file and display date and summary of event
+	order();
+
+	//read CSV file and display contacts
 
 	try (BufferedReader reader = new BufferedReader(new FileReader("contacts.csv"))) {
 		
@@ -102,6 +105,52 @@ public class Contacts extends App implements ListApp{
 	
 	catch (IOException e) {}
 	
+    }
+
+    public void selectionSortV( ArrayList<String> data ) //helper for order()                                                                                                                                                                                                 
+    {
+        for ( int index = 0 ; index < data.size() - 1 ; index++ ) {
+            String smallest = data.get(index);
+            int indexOfSmallest = index;
+            for ( int index2 = index + 1 ; index2 < data.size() ; index2++ ) { //search for smallest element                                                                                                                                                                  
+                String letter1 = data.get(index2).substring(0,1);
+                if ( ALPHABET.indexOf(letter1) < ALPHABET.indexOf(smallest.substring(0,1)) ) {
+                    smallest = data.get(index2);
+                    indexOfSmallest = index2;
+                }
+            }
+            String temp = data.get(index); //swaperoo                                                                                                                                                                                                                         
+            data.set(index,smallest);
+            data.set(indexOfSmallest,temp);
+        }
+    }//end selectionSort -- O(n^2)                                                                                                                                                                                                                                            
+    
+    public void order() { //rearranges information in csv file according to alphabet                                                                                                                                                                                             
+
+
+        ArrayList<String> temp = new ArrayList<String>(); //this temp arraylist will hold everything in the old file (file to be replaced)                                                                                                                                   \
+                                                                                                                                                                                                                                                                              
+        try (BufferedReader reader = new BufferedReader(new FileReader("contacts.csv"))) {
+
+                String line = "";
+                int counter = 1;
+                while ((line = reader.readLine()) != null) {
+                    temp.add(line);
+                }
+                counter++;
+            }
+        catch ( IOException e) {}
+
+        selectionSortV( temp );
+	
+        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("contacts.csv", false)))) {
+
+                for (int index = 0;index < temp.size();index++) {
+                    out.println(temp.get(index)); //transfer elements from temp to new file line by line \
+		    
+                }
+            }
+        catch ( IOException e) {}
     }
 
     public void create() {
