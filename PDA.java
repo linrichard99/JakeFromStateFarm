@@ -68,7 +68,6 @@ public class PDA extends App{
 	println("<Scheduler>");
 	println("<Contacts>");
 	println("<Memo>");
-	println("<Calculator>");
 	println();
 	println();
 	printLine();
@@ -94,7 +93,6 @@ public class PDA extends App{
         println("<Scheduler>");
         println("<Contacts>");
         println("<Memo>");
-        println("<Calculator>");
         println();
         println();
         printLine();

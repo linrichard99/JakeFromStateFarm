@@ -47,3 +47,23 @@ Created ListApp.java (interface)
 2016-01-20
 V:
 Contacts,Memos,Scheduler can now delete stored information
+R:
+Created a way to truncate the text displayed on the screens
+Made a clear screen method to make the graphics less jarring and jumpy
+
+2016-01-21
+V/R:
+Calendar now can access events.csv and show when there is an event
+
+2016-01-22
+V/R:
+Break
+
+2016-01-23
+V:
+Main screen now shows notifications when there is an event
+Events are shown in order for Scheduler
+R:
+Robustified inputs for Contacts, Memos and Schedulers so users can't tamper
+V/R:
+Wrote readme.txt

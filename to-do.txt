@@ -29,13 +29,17 @@ R:
 *Start (finish?) delete and edit methods
 
 2016-01-23
-***Robustification (protect inputs from user stupidity)
+*Robustification (protect inputs from user stupidity)
 *The ability to edit stored information
-**Ordering of information (most important for Scheduler)
+     (SCRAPPED)- Redundat. Can just delete and create. 
+*Ordering of information (most important for Scheduler)
 *Notifications
-***Calendar should put asterisks on dates with events
-***Basic Calculator
+*Calendar should put asterisks on dates with events
+*Basic Calculator
+     (SCRAPPED)- Doesn't fit theme
 
-through 2016-01-25
-*Additional time to serve as a buffer as well as bug testing
+2016-01-24
+*Read code over. Check for redundancy.
+*Final comments for clarifying certain parts.
+*Color???????
 

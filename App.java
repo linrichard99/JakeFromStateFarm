@@ -63,14 +63,15 @@ public abstract class App {
     //Removing the quotes when printing the comma proofed things
     */
 
-    public Date stringToDate(String inDate) { //The date is a string because its fomatted                                                                                                                                                                                      
-        //To parse a specfic date, I had to google it.                                                                                                                                                                                                                        
-        //Help from: http://stackoverflow.com/questions/5270272/how-to-determine-day-of-week-by-passing-specific-date                                                                                                                                                         
+    public Date stringToDate(String inDate) { //The date is a string because its fomatted                             
+        //To parse a specfic date, I had to google it.                          
+        //Help from: http://stackoverflow.com/questions/5270272/how-to-determine-day-of-week-by-passing-specific-date
 	
         SimpleDateFormat toBeParsed = new SimpleDateFormat("yyyy-MM-dd");
         Date parsedDate = new Date();
         try {
-            parsedDate = toBeParsed.parse(inDate); //Translates string format into an actual Date object                                                                                                                                                                      
+            parsedDate = toBeParsed.parse(inDate); //Translates string format into an actual Date object
+	    
         }
 	
         catch (ParseException e) {}
@@ -80,7 +81,8 @@ public abstract class App {
 
     public boolean checkDate(String inDate) {
 	
-        //The pull from events.csv part                                                                                                                                                                                                                                       
+        //The pull from events.csv part
+	
         ArrayList<String> listDates = new ArrayList<String>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader("events.csv"))) {
@@ -94,8 +96,8 @@ public abstract class App {
             }
         catch (IOException e) {}
 
-        //The linear search part                                                                                                                                                                                                                                              
-        for (int i = 0; i < listDates.size(); i++) {
+        //The linear search part
+	for (int i = 0; i < listDates.size(); i++) {
             if (inDate.equals(listDates.get(i))) {
                 return true;
             }

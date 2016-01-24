@@ -3,7 +3,11 @@ import java.text.*;
 import java.io.*;
 
 public class Contacts extends App implements ListApp{
+    
+    private boolean mischief = false; //This is for when users try to input things that aren't allowed. In these cases, we have to print an error message. Sometimes, due to the fact that our code clears the screen each time the main screen is shown, that error message isn't seen. This way, we can still reprimand the user for trying to mess with the code.
 
+    private final String VALIDPHONE = "0123456789#";
+    
     public void run() {
 	
 	printMain();
@@ -23,6 +27,9 @@ public class Contacts extends App implements ListApp{
 	    if (input.equals("Create")) { //to create an event, a bunch of prompts will be asked
 		create();
 		printMain(); //This goes after so you can see the new event
+		if (mischief) {
+		    System.out.println("Input data properly");
+		}
 	    }
 
 	    else if (input.equals("Delete")) {
@@ -122,6 +129,11 @@ public class Contacts extends App implements ListApp{
 	
 	try {
 	    email = readVal.readLine();
+	    
+	    if ((email.indexOf("@") < 0) || !(email.substring(email.length()-4, email.length()-3).equals("."))) { //Checks if email has @ symbol and domain
+		mischief = true;
+		return;
+	    }
 	}
 	catch ( IOException e) {}
 	
@@ -130,10 +142,16 @@ public class Contacts extends App implements ListApp{
 	
 	try {
 	    phone = readVal.readLine();
+	    for (int i = 0; i < phone.length(); i++) {
+		if (VALIDPHONE.indexOf(phone.substring(i,i+1)) < 0) {
+		    mischief = true;
+		    return;
+		}
+	    }
 	}
 	catch ( IOException e) {}
 
-	//Write to fil                 
+	//Write to file                 
 	
 	try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("contacts.csv", true)))) {
 		out.println(fName + "#@!!" + lName + "#@!!" + email + "#@!!" + phone);

@@ -85,7 +85,8 @@ public class Memos extends App implements ListApp{
 		    for (int i = 0; i < print.length; i++) {
 			test += print[i] + "  ";
 		    }
-		    System.out.println(test);
+
+		    //System.out.println(test);
 		    
 		    
 		    String name = truncate(print[0], 10);
@@ -185,7 +186,7 @@ public class Memos extends App implements ListApp{
                 while ((line = reader.readLine()) != null) { //while loop is better because this boolean prevents String line to be null
                     if (counter == input) {
 			print = line.split("#@!!");
-			System.out.println("Here's what you wrote: " + print[1] );
+			System.out.println("Here's what you wrote: \n" + print[1] );
 		    }
 		    counter++;
                 }

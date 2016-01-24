@@ -4,6 +4,7 @@ import java.io.*;
 
 public class Scheduler extends App implements ListApp{
 
+    private boolean mischief = false; //This is for when users try to input things that aren't allowed. In these cases, we have to print an error message. Sometimes, due to the fact that our code clears the screen each time the main screen is shown, that error message isn't seen. This way, we can still reprimand the user for trying to mess with the code. 
     public void run() {
 	
 	printMain();
@@ -23,6 +24,10 @@ public class Scheduler extends App implements ListApp{
 	    if (input.equals("Create")) { //to create an event, a bunch of prompts will be asked
 		create();
 		printMain(); //This goes after so you can see the new event
+		if (mischief) {
+		    System.out.println("Follow instructions please");
+		    mischief = false;
+		}
 	    }
 
 	    else if (input.equals("Details")) {
@@ -153,8 +158,18 @@ public class Scheduler extends App implements ListApp{
 
 	try {
 	    date = readVal.readLine();
+
+	    //This doesn't serve any purpose other than seeing if the user actually entered a Date. It utilizes a snippet of code from the checkDate() method in App.java.
+	    
+	    SimpleDateFormat toBeParsed = new SimpleDateFormat("yyyy-MM-dd");
+	    Date check = new Date();
+            check = toBeParsed.parse(date);	    
 	}
-	catch ( IOException e) {}
+	
+	catch ( IOException|ParseException e) {
+	    mischief = true;
+	    return;
+	}
 
 	System.out.println("Summary of the event: (15 chars max)");
 	
