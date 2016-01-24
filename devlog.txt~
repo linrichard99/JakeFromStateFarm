@@ -63,7 +63,6 @@ Break
 V:
 Main screen now shows notifications when there is an event
 Events are shown in order for Scheduler
-Contact names appear in alphabetical order
 R:
 Robustified inputs for Contacts, Memos and Schedulers so users can't tamper
 V/R:
