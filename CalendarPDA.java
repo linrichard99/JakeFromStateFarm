@@ -5,6 +5,7 @@ import java.io.*;
 public class CalendarPDA extends App { //Called CalendarPDA because there already is a Calendar clas made in java.util. This is to avoid confusion since they do different things.
 
     //This is for testing since I didn't have access to PDA.java because partner was using it on github (and merge errors are mucho scary)
+    /*
     public static void main(String[] arg) {
 	CalendarPDA test = new CalendarPDA();
 
@@ -40,7 +41,8 @@ public class CalendarPDA extends App { //Called CalendarPDA because there alread
 	test.run();
 	
     }
-
+    */
+    
     //Implementing the Printer interface
     public void print(String arg) {
 	System.out.print("|" + arg);
@@ -52,9 +54,12 @@ public class CalendarPDA extends App { //Called CalendarPDA because there alread
 
     //This is a helper function to startMonthHere. It tells you the weekday when provided a date.
     public String dayOfWeek(String inDate) { //The date is a string because its fomatted
+
+	//This converts the string to an actual date
 	Date parsedDate = stringToDate( inDate );
-	
-	SimpleDateFormat display = new SimpleDateFormat("EE");
+
+	//This displays the corresponding weekday to that date
+	SimpleDateFormat display = new SimpleDateFormat("E");
 	String dayOfWeek = display.format(parsedDate);
 
 	return dayOfWeek;
@@ -87,6 +92,7 @@ public class CalendarPDA extends App { //Called CalendarPDA because there alread
 	}
     }
 
+    //This figures out how long each month is
     public int daysOfMonth(String month, int year) { //Month is a string to faciliatate easier storage of long and short months.
 	String longDays = "01 03 05 07 08 10 12"; //Need the 0's in order to prevent any mis-finds
 	String shortDays = "04 06 09 11";
@@ -121,7 +127,8 @@ public class CalendarPDA extends App { //Called CalendarPDA because there alread
 	
     }
 
-    public void printCalBody(String month, int year) {
+    //Printing the calendar body
+    public void printCalBody(String month, int year) { //Having the year be an int, and the month be a string is actually useful. Since the user doesn't touch this, and only I do, I can essentially have these weird non-type-matching inputs
 	
 	//This formates the first date of the month/year specified because startMonthHere requires it
 	String firstDate = year + "-" + month + "-" + "01";
@@ -153,6 +160,8 @@ public class CalendarPDA extends App { //Called CalendarPDA because there alread
 	    //This is for spacing the numbers correctly
 	    if (i < 10) {
 		String dayVal = "0" + i;
+
+		//This is to put asterisks where there are events.
 		if (checkDate(year + "-" + month + "-" + dayVal)) {
 		    print("*" + dayVal);
 		}
@@ -179,7 +188,7 @@ public class CalendarPDA extends App { //Called CalendarPDA because there alread
 	    print("   ");
 	}
 
-	//The last border value
+	//The last border line
 	System.out.println("|");
 
 	//Closing line
@@ -187,6 +196,7 @@ public class CalendarPDA extends App { //Called CalendarPDA because there alread
 	
     }
 
+    //This combines the body with some other information
     public void printMain(String month, int year){//Month is string so fit the daysOfMonth method better
 
 	clear();
@@ -203,6 +213,8 @@ public class CalendarPDA extends App { //Called CalendarPDA because there alread
 	printCalBody(month,year);
 
 	//This prints footer
+
+	//What it does is convert today's date into a formatted String
 	Date today = new Date();
 	SimpleDateFormat display = new SimpleDateFormat("yyyy-MM-dd");
 	String displayToday = "Today: " + display.format(today);
@@ -222,15 +234,17 @@ public class CalendarPDA extends App { //Called CalendarPDA because there alread
 	SimpleDateFormat year = new SimpleDateFormat("yyyy");
 	//This sets the values
 	String monthVal = month.format(today);
-	int yearVal = Integer.parseInt(year.format(today));
-	int monthValI = Integer.parseInt(month.format(today));
+	int yearVal = Integer.parseInt(year.format(today)); //Once again, year is an integer, while month is a String. 
+	int monthValI = Integer.parseInt(month.format(today)); //But I also have an integer month value because it comes in handy when incrementing.
 
 	//Annnd it prints current calendar here
 	printMain(monthVal, yearVal);
 
+	//Here is the looping part
 	while (goToMain) {
 
 	    System.out.println("Available commands: Prev, Next, Exit");
+	    System.out.print("> ");
 	    
 	    String input = "";
 

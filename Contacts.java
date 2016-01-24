@@ -3,11 +3,9 @@ import java.text.*;
 import java.io.*;
 
 public class Contacts extends App implements ListApp{
-    
-    private boolean mischief = false; //This is for when users try to input things that aren't allowed. In these cases, we have to print an error message. Sometimes, due to the fact that our code clears the screen each time the main screen is shown, that error message isn't seen. This way, we can still reprimand the user for trying to mess with the code.
 
-    private final String VALIDPHONE = "0123456789#";
-    private final String ALPHABET = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz";
+    private final String VALIDPHONE = "0123456789#"; //Valid phone number values
+    private final String ALPHABET = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz"; //The alphabet in alphabetical order
     
     public void run() {
 	
@@ -16,6 +14,7 @@ public class Contacts extends App implements ListApp{
         while (goToMain) {
 
 	    System.out.println("Available commands: Create, Delete, Details, Exit");
+	    System.out.print("> ");
 	    
 	    String input = "";
 	    	    
@@ -107,29 +106,33 @@ public class Contacts extends App implements ListApp{
 	
     }
 
-    public void selectionSortV( ArrayList<String> data ) //helper for order()                                                                                                                                                                                                 
-    {
+    public void selectionSortV( ArrayList<String> data ) { //helper for order()
+	
         for ( int index = 0 ; index < data.size() - 1 ; index++ ) {
             String smallest = data.get(index);
             int indexOfSmallest = index;
-            for ( int index2 = index + 1 ; index2 < data.size() ; index2++ ) { //search for smallest element                                                                                                                                                                  
+            for ( int index2 = index + 1 ; index2 < data.size() ; index2++ ) { //search for smallest element
+		
                 String letter1 = data.get(index2).substring(0,1);
-                if ( ALPHABET.indexOf(letter1) < ALPHABET.indexOf(smallest.substring(0,1)) ) {
+                if ( ALPHABET.indexOf(letter1) < ALPHABET.indexOf(smallest.substring(0,1)) ) { //We utilize the index of the letters in ALPHABET to compare values. Interestingly, if there are symbols, then they go all the way in the front (index value of -1), which is a fast and clean way to deal with them. 
                     smallest = data.get(index2);
                     indexOfSmallest = index2;
                 }
             }
-            String temp = data.get(index); //swaperoo                                                                                                                                                                                                                         
+            String temp = data.get(index); //swaperoo
+	    
             data.set(index,smallest);
             data.set(indexOfSmallest,temp);
         }
-    }//end selectionSort -- O(n^2)                                                                                                                                                                                                                                            
+    }//end selectionSort -- Gotta love using old hw
+
+    /*We decided not to make order() an inherited method since it utilizes selectionSortV(), which is different between the two apps that utilize order(). Thus, in order to make order() an inherited method, we would also have to make an abstract selectionSortV(). If we put that abstract method in App.java, it would force all the other apps to implement it, even though they don't need it. The other option would be to make another superclass below Apps, but above this. That would overcomplciate the tree for essentially just a single method, which is not worth it. 
+     */
     
-    public void order() { //rearranges information in csv file according to alphabet                                                                                                                                                                                             
-
-
-        ArrayList<String> temp = new ArrayList<String>(); //this temp arraylist will hold everything in the old file (file to be replaced)                                                                                                                                   \
-                                                                                                                                                                                                                                                                              
+    public void order() { //rearranges information in csv file according to alphabet
+	
+        ArrayList<String> temp = new ArrayList<String>(); //this temp arraylist will hold everything in the old file (file to be replaced)
+	
         try (BufferedReader reader = new BufferedReader(new FileReader("contacts.csv"))) {
 
                 String line = "";
@@ -161,6 +164,7 @@ public class Contacts extends App implements ListApp{
 	String phone = "";
 
 	System.out.println("First Name");
+	System.out.print("> ");
 
 	try {
 	    fName = readVal.readLine();
@@ -168,6 +172,7 @@ public class Contacts extends App implements ListApp{
 	catch ( IOException e) {}
 
 	System.out.println("Last Name");
+	System.out.print("> ");
 	
 	try {
 	    lName = readVal.readLine();
@@ -175,6 +180,7 @@ public class Contacts extends App implements ListApp{
 	catch ( IOException e) {}
 	
 	System.out.println("Email");
+	System.out.print("> ");
 	
 	try {
 	    email = readVal.readLine();
@@ -188,7 +194,7 @@ public class Contacts extends App implements ListApp{
 	
 	
 	System.out.println("Phone Number");
-	
+	System.out.print("> ");
 	try {
 	    phone = readVal.readLine();
 	    for (int i = 0; i < phone.length(); i++) {
@@ -216,6 +222,7 @@ public class Contacts extends App implements ListApp{
         int input = 0;
 
         System.out.println( "Specify the number of a contact:" );
+	System.out.print("> ");
 
         try {
             input = Integer.parseInt( readVal.readLine() );

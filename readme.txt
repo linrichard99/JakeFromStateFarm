@@ -25,4 +25,8 @@ You can go forward and back in months.
 Today's date is shown on the bottom.
 The asterisk means there is an event on that date.
 
+To exit any app, or the main screen, type Exit.
+
+Enjoy :)
+
 

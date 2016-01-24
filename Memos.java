@@ -3,7 +3,7 @@ import java.text.*;
 import java.io.*;
 
 public class Memos extends App implements ListApp{
-
+    
     public void run() {
 	
 	printMain();
@@ -11,6 +11,7 @@ public class Memos extends App implements ListApp{
         while (goToMain) {
 
 	    System.out.println("Available commands: Create, Delete, Details, Exit");
+	    System.out.print("> ");
 	    
 	    String input = "";
 	    	    
@@ -110,13 +111,15 @@ public class Memos extends App implements ListApp{
 	String memoNotes = "";
 
 	System.out.println("What do you want to call your memo?");
-
+	System.out.print("> ");
+	
 	try {
 	    memoName = readVal.readLine();
 	}
 	catch ( IOException e) {}
 
-	System.out.println("You may write down your notes here:");
+	System.out.println("You may write down your notes here:");	
+	System.out.print("> ");
 	
 	try {
 	    memoNotes = readVal.readLine();
@@ -138,6 +141,7 @@ public class Memos extends App implements ListApp{
         int input = 0;
 
         System.out.println( "Specify the number of a memo:" );
+	System.out.print("> ");
 
         try {
             input = Integer.parseInt( readVal.readLine() );
@@ -172,7 +176,8 @@ public class Memos extends App implements ListApp{
 	int input = 0;
 	
 	System.out.println( "Specify the number of a memo:" );
-	
+	System.out.print("> ");
+		
 	try {
 	    input = Integer.parseInt( readVal.readLine() );
 	}
@@ -188,6 +193,7 @@ public class Memos extends App implements ListApp{
 			print = line.split("#@!!");
 			System.out.println("Here's what you wrote: \n" + print[1] );
 		    }
+		    
 		    counter++;
                 }
 	    }

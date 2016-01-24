@@ -7,6 +7,8 @@ public abstract class App {
     protected InputStreamReader inVal; //input stream
     protected BufferedReader readVal; //buffered input stream
     protected boolean goToMain; //flag that allows the PDA to constantly run
+
+    protected boolean mischief = false; //This is for when users try to input things that aren't allowed. In these cases, we have to print an error message. Sometimes, due to the fact that our code clears the screen each time the main screen is shown, that error message isn't seen. This way, we can still reprimand the user for trying to mess with the code.
     
     public App(){
 	inVal = new InputStreamReader(System.in);
@@ -40,6 +42,11 @@ public abstract class App {
 	System.out.println("Override/overload this method please!");
     }
 
+
+    /*
+      THE FOLLOWING ARE METHODS USED BY DIFFERENT APPS THAT DON'T MERIT THEIR OWN SUPERCLASS SINCE ONLY A FEW DIFFERENT APPS USE THEM
+    */
+    
     //This is used in displaying text that is perhaps too long
     public String truncate(String arg, int finVal) {
 	if (arg.length() < finVal) {
@@ -49,19 +56,6 @@ public abstract class App {
 	    return arg.substring(0,finVal-3) + "...";
 	}
     }
-
-    /* NO LONGER NEEDED BUT KEPT FOR REFERENCE
-    //This is used to safeguard csv files from comma tampering
-    public String commaProof(String in) {
-	String retVal = "";
-	retVal = in.replace("\"", "'"); //This is to change all double quotes to single quotes, which have the same functionality in grammar, but won't mess with our safeproofing
-	retVal = "\"" + retVal + "\""; //Safe proofing with double commas
-
-	return retVal;
-    }
-
-    //Removing the quotes when printing the comma proofed things
-    */
 
     public Date stringToDate(String inDate) { //The date is a string because its fomatted                             
         //To parse a specfic date, I had to google it.                          
@@ -105,5 +99,6 @@ public abstract class App {
 
         return false;
     }
+
     
 }

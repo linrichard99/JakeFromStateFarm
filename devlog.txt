@@ -68,3 +68,8 @@ R:
 Robustified inputs for Contacts, Memos and Schedulers so users can't tamper
 V/R:
 Wrote readme.txt
+
+2016-01-24
+R:
+Added an input indicator and added a few final comments
+
